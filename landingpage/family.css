@@ -1,0 +1,325 @@
+/* General Reset & Fonts */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background:
+        radial-gradient(circle at top center, #065f46 0%, #04201a 50%, #010a08 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding: 40px 20px 70px;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* Glow orbs sa background */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+    z-index: -1;
+}
+
+body::before {
+    width: 420px;
+    height: 420px;
+    background: rgba(16, 185, 129, 0.28);
+    top: -120px;
+    left: -100px;
+    animation: floatA 14s ease-in-out infinite alternate;
+}
+
+body::after {
+    width: 380px;
+    height: 380px;
+    background: rgba(45, 212, 191, 0.2);
+    bottom: -120px;
+    right: -80px;
+    animation: floatB 16s ease-in-out infinite alternate;
+}
+
+@keyframes floatA {
+    to { transform: translate(120px, 90px) scale(1.15); }
+}
+
+@keyframes floatB {
+    to { transform: translate(-110px, -80px) scale(1.2); }
+}
+
+/* Back Button Style */
+.back-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(110, 231, 183, 0.3);
+    border-radius: 50px;
+    color: #ffffff !important;
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 10px 24px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.back-btn:hover {
+    background: #6ee7b7 !important;
+    color: #04201a !important;
+    transform: translateX(-4px);
+    box-shadow: 0 6px 22px rgba(110, 231, 183, 0.35);
+}
+
+#family {
+    padding: 20px 0;
+}
+
+/* Title */
+#family h1 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 6vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 55px;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #ffffff 20%, #6ee7b7 60%, #2dd4bf 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: fadeUp 0.8s ease backwards;
+}
+
+#family h1::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 4px;
+    margin: 16px auto 0;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #34d399, #2dd4bf);
+    box-shadow: 0 0 16px rgba(52, 211, 153, 0.7);
+}
+
+/* Container Layout */
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Card Style */
+.box {
+    position: relative;
+    width: 220px;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(110, 231, 183, 0.18);
+    border-radius: 22px;
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 18px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    animation: fadeUp 0.7s ease backwards;
+}
+
+/* Isa-isang lalabas ang mga cards */
+.box:nth-child(1) { animation-delay: 0.1s; }
+.box:nth-child(2) { animation-delay: 0.2s; }
+.box:nth-child(3) { animation-delay: 0.3s; }
+.box:nth-child(4) { animation-delay: 0.4s; }
+.box:nth-child(5) { animation-delay: 0.5s; }
+.box:nth-child(6) { animation-delay: 0.6s; }
+.box:nth-child(7) { animation-delay: 0.7s; }
+.box:nth-child(8) { animation-delay: 0.8s; }
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+}
+
+.box:hover {
+    transform: translateY(-10px);
+    border-color: rgba(110, 231, 183, 0.6);
+    box-shadow:
+        0 22px 45px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(52, 211, 153, 0.25);
+}
+
+/* Shine na dumadaan sa card */
+.box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -80%;
+    width: 50%;
+    height: 240px;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+    transform: skewX(-20deg);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.box:hover::before {
+    left: 130%;
+    transition: left 0.9s ease;
+}
+
+/* Dark fade sa ilalim ng litrato */
+.box::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 240px;
+    background: linear-gradient(to bottom, transparent 55%, rgba(4, 32, 26, 0.85) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Image Styles */
+.box img {
+    display: block;
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    object-position: center 20%;
+    transition: transform 0.6s ease, filter 0.4s ease;
+}
+
+.box:hover img {
+    transform: scale(1.08);
+}
+
+/* Blur ang ibang cards kapag may tinututukan */
+.container:has(.box:hover) .box:not(:hover) img {
+    filter: blur(5px) brightness(0.75);
+}
+
+.container:has(.box:hover) .box:not(:hover) {
+    opacity: 0.8;
+}
+
+/* Name / Link */
+.box a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    color: #ffffff;
+    margin-top: 16px;
+    background: transparent !important;
+    transition: color 0.3s ease;
+}
+
+.box a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #34d399, #2dd4bf);
+    transform: translateX(-50%);
+    transition: width 0.35s ease;
+}
+
+.box:hover a {
+    color: #6ee7b7;
+}
+
+.box:hover a::after {
+    width: 100%;
+}
+
+/* Responsive Design para sa Cellphone */
+@media (max-width: 768px) {
+    body {
+        padding: 20px 10px 50px;
+    }
+
+    #family h1 {
+        font-size: 2.3rem;
+        margin-bottom: 35px;
+    }
+
+    .container {
+        gap: 16px;
+    }
+
+    .box {
+        width: 160px;
+        border-radius: 18px;
+    }
+
+    .box img,
+    .box::after,
+    .box::before {
+        height: 185px;
+    }
+
+    .box a {
+        font-size: 0.95rem;
+    }
+}
+
+/* Para sa mga ayaw ng maraming galaw */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+/* Simple page transition */
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root) {
+    animation: pageOut 0.3s ease both;
+}
+
+::view-transition-new(root) {
+    animation: pageIn 0.5s ease both;
+}
+
+@keyframes pageOut {
+    to {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes pageIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+}
+
+/* Para sa browser na hindi kaya ang nasa itaas: fade-in lang */
+@supports not (view-transition-name: none) {
+    body {
+        animation: pageIn 0.6s ease both;
+    }
+}
